@@ -2,54 +2,43 @@ package br.com.unisoma.api.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
+
+import lombok.Data;
 
 @Entity
+@Data
 public class Employee {
+
     @Id
+    @NotNull
+    @CPF
     private String cpf;
-    private String name;    
+
+    @Column
+    // @NotNull
+    @Size(min = 3, max = 255)
+    private String name;
+
+    @Column
+    // @NotNull
     private LocalDate birthDate;
-    private Number phone;
+
+    @Column
+    // @NotNull
+    private Long phone;
+
+    @Column
+    // @NotNull
     private String address;
+
+    @Column
+    // @NotNull
     private Float salary;
-
-    public Employee(String name, String cpf, LocalDate birthDate, Integer phone, String address, Float salary){
-        this.name = name;
-        this.cpf = cpf;
-        this.birthDate = birthDate;
-        this.phone = phone;
-        this.address = address;
-        this.salary = salary;
-    }
-
-    public Employee() {}
-
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public String getCPF() { return cpf; }
-
-    public void setCPF(String cpf) { this.cpf = cpf; }
-
-    public LocalDate getBirthDate() { return birthDate; }
-
-    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
-
-    public Number getPhone() { return phone; }
-
-    public void setPhone(Number phone) { this.phone = phone; }
-
-    public String getAddress() { return address; }
-
-    public void setAddress(String address) { this.address = address; }
-
-    public Float getSalary() { return salary; }
-
-    public void setSalary(Float salary) { this.salary = salary; }
 }
-
