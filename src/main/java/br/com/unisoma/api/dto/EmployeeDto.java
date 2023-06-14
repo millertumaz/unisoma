@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 import br.com.unisoma.api.model.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDto {
-
     private String cpf;
     private String name;
     private LocalDate birthDate;
@@ -22,7 +26,6 @@ public class EmployeeDto {
     private Float salary;
 
     public EmployeeDto(Employee employee) {
-
         this.name = employee.getName();
         this.cpf = employee.getCpf();
         this.birthDate = employee.getBirthDate();

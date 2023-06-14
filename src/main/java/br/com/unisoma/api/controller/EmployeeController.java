@@ -34,7 +34,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<EmployeeDto> getCpf(@PathVariable("cpf") String cpf) {
+    public ResponseEntity<EmployeeDto> getCpf(@Valid @PathVariable("cpf") String cpf) {
         return this.employeeService.findCpf(cpf);
     }
 
