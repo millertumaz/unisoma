@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,22 +33,23 @@ public class EmployeeController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<EmployeeDto> getCpf(@Valid @PathVariable("cpf") String cpf) {
+    public EmployeeDto getCpf(@Valid @PathVariable("cpf") String cpf) {
         return this.employeeService.findCpf(cpf);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee create(@Valid @RequestBody Employee employee) {
+    public EmployeeDto create(@Valid @RequestBody Employee employee) {
         return this.employeeService.create(employee);
     }
 
     @PutMapping
-    public Employee alter(@Valid @RequestBody Employee employee) {
+    public EmployeeDto alter(@Valid @RequestBody Employee employee) {
         return this.employeeService.update(employee, employee.getCpf());
     }
 
     @DeleteMapping("/{cpf}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("cpf") String cpf) {
         this.employeeService.delete(cpf);
     }

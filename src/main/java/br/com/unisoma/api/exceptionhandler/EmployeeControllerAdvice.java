@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice(basePackages = "br.com.unisoma.api.controller")
 public class EmployeeControllerAdvice {
-
     @ResponseBody
     @ExceptionHandler(EmployeeNotFoundException.class)
     public ResponseEntity<MessageExceptionHandler> employeeNotFound(EmployeeNotFoundException employeeNotFound) {
         MessageExceptionHandler error = new MessageExceptionHandler(
-            new Date(), HttpStatus.NOT_FOUND.value(), "Funcionário não encontrado!");
+                new Date(), HttpStatus.NOT_FOUND.value(), "Funcionário não encontrado!");
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }

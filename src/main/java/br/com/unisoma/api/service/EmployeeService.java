@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.unisoma.api.dto.EmployeeDto;
@@ -20,27 +19,38 @@ public class EmployeeService {
 
     public List<EmployeeDto> findAll() {
         List<Employee> employees = this.repository.findAll();
+
         return EmployeeDto.convert(employees);
     }
 
-    public ResponseEntity<EmployeeDto> findCpf(String cpf) {
+    public EmployeeDto findCpf(String cpf) {
         Optional<Employee> employee = this.repository.findById(cpf);
-        
+
         employee.orElseThrow(() -> new EmployeeNotFoundException());
 
-        return ResponseEntity.ok(new EmployeeDto(employee.get()));
+        return new EmployeeDto(employee.get());
     }
 
-    public Employee create(Employee employee) {
-        return this.repository.save(employee);
+    public EmployeeDto create(Employee employee) {
+        Optional<Employee> exist = this.repository.findById(employee.getCpf());
+
+        if (exist.isPresent()) {
+            // Criar uma excessão aqui quando já existir o funcionário.
+        }
+
+        Employee save = this.repository.save(employee);
+
+        return new EmployeeDto(save);
     }
 
-    public Employee update(Employee employee, String cpf) {
+    public EmployeeDto update(Employee employee, String cpf) {
         findCpf(cpf);
-        
+
         employee.setCpf(cpf);
 
-        return this.repository.save(employee);
+        Employee save = this.repository.save(employee);
+
+        return new EmployeeDto(save);
     }
 
     public void delete(String cpf) {

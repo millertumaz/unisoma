@@ -4,11 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.br.CPF;
-
 import br.com.unisoma.api.model.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -14,7 +14,6 @@ public class NewSalaryDto {
     private Float readjustment;
     private int readjustmentPercentage;
 
-
     public NewSalaryDto(Employee employee, Float newSalary, Float readjustment, int percentage) {
         this.cpf = employee.getCpf();
         this.newSalary = newSalary;
