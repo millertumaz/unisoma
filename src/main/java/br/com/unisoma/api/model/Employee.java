@@ -11,6 +11,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import lombok.Data;
@@ -35,10 +36,11 @@ public class Employee {
     private LocalDate birthDate;
 
     @Column
-    private Long phone;
+    @Pattern(regexp="^\\d{10,11}$", message = "O telefone deve ser informado no formato <DDD 2 dígitos><Telefone somente números>")
+    private String phone;
 
     @Column
-    @Size(min = 3, max = 255, message = "O nome deve ter entre 3 e 255 caractere.")
+    @Size(min = 3, max = 255, message = "O endereço deve ter entre 3 e 255 caractere.")
     private String address;
 
     @Column

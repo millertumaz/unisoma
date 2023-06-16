@@ -16,7 +16,7 @@ public class EmployeeDto {
     private String cpf;
     private String name;
     private LocalDate birthDate;
-    private Long phone;
+    private String phone;
     private String address;
     private Float salary;
 

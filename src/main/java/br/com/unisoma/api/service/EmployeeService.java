@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.unisoma.api.dto.EmployeeDto;
+import br.com.unisoma.api.exceptionhandler.EmployeeAlreadyRegisteredException;
 import br.com.unisoma.api.exceptionhandler.EmployeeNotFoundException;
 import br.com.unisoma.api.model.Employee;
 import br.com.unisoma.api.repository.EmployeeRepository;
@@ -35,7 +38,7 @@ public class EmployeeService {
         Optional<Employee> exist = this.repository.findById(employee.getCpf());
 
         if (exist.isPresent()) {
-            // Criar uma excessão aqui quando já existir o funcionário.
+            throw new EmployeeAlreadyRegisteredException();
         }
 
         Employee save = this.repository.save(employee);

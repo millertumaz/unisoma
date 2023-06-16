@@ -1,6 +1,5 @@
 package br.com.unisoma.api.service;
 
-import java.text.DecimalFormat;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,8 @@ import br.com.unisoma.api.dto.NewSalaryDto;
 import br.com.unisoma.api.exceptionhandler.EmployeeNotFoundException;
 import br.com.unisoma.api.model.Employee;
 import br.com.unisoma.api.repository.EmployeeRepository;
-import br.com.unisoma.api.util.CalculateNewSalary;
-import br.com.unisoma.api.util.MainNewSalary;
+import br.com.unisoma.api.service.chainOfResponsibility.caculateNewSalary.CalculateNewSalary;
+import br.com.unisoma.api.service.chainOfResponsibility.caculateNewSalary.MainNewSalary;
 
 @Service
 public class NewSalaryService {
@@ -27,6 +26,7 @@ public class NewSalaryService {
 
         CalculateNewSalary calculateNewSalary = new MainNewSalary()
                 .calculate(employee.get().getSalary());
+                
         this.repository.updateSalary(cpf, calculateNewSalary.newSalary);
 
         return new NewSalaryDto(employee.get(), calculateNewSalary.newSalary,
