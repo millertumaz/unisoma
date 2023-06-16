@@ -1,5 +1,6 @@
 package br.com.unisoma.api.service;
 
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ public class NewSalaryService {
 
         CalculateNewSalary calculateNewSalary = new MainNewSalary()
                 .calculate(employee.get().getSalary());
-
         this.repository.updateSalary(cpf, calculateNewSalary.newSalary);
 
         return new NewSalaryDto(employee.get(), calculateNewSalary.newSalary,

@@ -1,6 +1,6 @@
 package br.com.unisoma.api.util;
 
-public class QuartenarySalaryHandler extends BaseNewSalaryHandler {
+public class QuaternarySalaryHandler extends BaseNewSalaryHandler {
 
     CalculateNewSalary handle(CalculateNewSalary salary) {
         if (salary.currentSalary > 1200 && salary.currentSalary <= 2000) {

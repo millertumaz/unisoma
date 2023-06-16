@@ -1,10 +1,10 @@
 package br.com.unisoma.api.util;
 
-public class PrymarySalaryHandler extends BaseNewSalaryHandler {
+public class SecondarySalaryHandler extends BaseNewSalaryHandler {
 
-    public CalculateNewSalary handle(CalculateNewSalary salary) {
-        if (salary.currentSalary >= 0 && salary.currentSalary <= 400) {
-            salary.percentage = 15;
+    CalculateNewSalary handle(CalculateNewSalary salary) {
+        if (salary.currentSalary > 400 && salary.currentSalary <= 800) {
+            salary.percentage = 12;
             salary.readjustment = (salary.currentSalary * salary.percentage) / 100;
             salary.newSalary = salary.currentSalary + salary.readjustment;
 

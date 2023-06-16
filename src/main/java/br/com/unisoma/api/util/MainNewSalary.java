@@ -4,14 +4,14 @@ public class MainNewSalary {
     public CalculateNewSalary calculate(Float salary) {
         CalculateNewSalary calculateNewSalary = new CalculateNewSalary(salary);
 
-        PrymarySalaryHandler prymarySalaryHandler = new PrymarySalaryHandler();
+        PrimarySalaryHandler primarySalaryHandler = new PrimarySalaryHandler();
 
-        prymarySalaryHandler
-                .setNextHandler(new SecundarySalaryHandler())
+        primarySalaryHandler
+                .setNextHandler(new SecondarySalaryHandler())
                 .setNextHandler(new TertiarySalaryHandler())
-                .setNextHandler(new QuartenarySalaryHandler())
+                .setNextHandler(new QuaternarySalaryHandler())
                 .setNextHandler(new QuintenarySalaryHandler());
 
-        return prymarySalaryHandler.handle(calculateNewSalary);
+        return primarySalaryHandler.handle(calculateNewSalary);
     }
 }
