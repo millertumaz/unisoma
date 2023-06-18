@@ -5,31 +5,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.unisoma.api.dto.NewSalaryDto;
+import br.com.unisoma.api.dto.IncomeTaxDto;
 import br.com.unisoma.api.exceptionhandler.EmployeeNotFoundException;
 import br.com.unisoma.api.model.Employee;
 import br.com.unisoma.api.repository.EmployeeRepository;
-import br.com.unisoma.api.service.chainOfResponsibility.caculateNewSalary.CalculateNewSalary;
-import br.com.unisoma.api.service.chainOfResponsibility.caculateNewSalary.MainNewSalary;
+import br.com.unisoma.api.service.chainOfResponsibility.calculateIncomeTax.CalculateIncomeTax;
+import br.com.unisoma.api.service.chainOfResponsibility.calculateIncomeTax.MainIncomeTax;
 
 @Service
-public class NewSalaryService {
-
+public class IncomeTaxService {
     @Autowired
     private EmployeeRepository repository;
 
-    public NewSalaryDto newSalary(String cpf) {
-
+    public IncomeTaxDto tax(String cpf) {
         Optional<Employee> employee = this.repository.findById(cpf);
 
         employee.orElseThrow(() -> new EmployeeNotFoundException());
 
-        CalculateNewSalary calculateNewSalary = new MainNewSalary()
+        CalculateIncomeTax calculateIncomeTax = new MainIncomeTax()
                 .calculate(employee.get().getSalary());
 
-        this.repository.updateSalary(cpf, calculateNewSalary.newSalary);
-
-        return new NewSalaryDto(employee.get(), calculateNewSalary.newSalary,
-                calculateNewSalary.readjustment, calculateNewSalary.percentage);
+        return new IncomeTaxDto(employee.get(), calculateIncomeTax.tax);
     }
 }

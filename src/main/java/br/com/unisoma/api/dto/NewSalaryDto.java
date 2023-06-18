@@ -12,12 +12,12 @@ public class NewSalaryDto {
     private String cpf;
     private Float newSalary;
     private Float readjustment;
-    private int readjustmentPercentage;
+    private String readjustmentPercentage;
 
     public NewSalaryDto(Employee employee, Float newSalary, Float readjustment, int percentage) {
         this.cpf = employee.getCpf();
         this.newSalary = newSalary;
         this.readjustment = readjustment;
-        this.readjustmentPercentage = percentage;
+        this.readjustmentPercentage = percentage + "%";
     }
 }

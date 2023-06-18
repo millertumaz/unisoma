@@ -43,9 +43,11 @@ public class EmployeeController {
         return this.employeeService.create(employee);
     }
 
-    @PutMapping
-    public EmployeeDto alter(@Valid @RequestBody Employee employee) {
-        return this.employeeService.update(employee, employee.getCpf());
+    @PutMapping("/{cpf}")
+    public EmployeeDto alter(@PathVariable("cpf") String cpf, @RequestBody Employee employee) {
+        employee.setCpf(cpf);
+
+        return this.employeeService.update(employee);
     }
 
     @DeleteMapping("/{cpf}")

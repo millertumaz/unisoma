@@ -11,8 +11,9 @@ import br.com.unisoma.api.model.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query("update Employee feedEntry set feedEntry.salary =:salary where feedEntry.cpf =:cpf")
-    void updateSalary(@Param("cpf") String cpf, @Param("salary") Float isRead);
+    void updateSalary(@Param("cpf") String cpf, @Param("salary") Float salary);
 }

@@ -2,18 +2,18 @@ package br.com.unisoma.api.service.chainOfResponsibility.calculateIncomeTax;
 
 import br.com.unisoma.api.util.RoundingNumbers;
 
-public class SecondaryIncomeTaxHandler extends BaseCalculateIncomeTax {
+public class QuaternaryIncomeTaxHandler extends BaseCalculateIncomeTax {
 
     public CalculateIncomeTax handle(CalculateIncomeTax tax) {
-        if (tax.salary > 2000 && tax.salary <= 3000) {
+        if (tax.salary > 4500) {
             RoundingNumbers b = new RoundingNumbers();
 
-            Float taxa = (((tax.salary - 2000) * 8) / 100);
+            Float taxa = (((tax.salary - 4500) * 28) / 100) + 80 + 270;
 
             taxa = b.RoundingNumber(taxa, "en");
 
             tax.tax = "R$ " + String.format("%.02f", taxa);
-
+            System.out.println(taxa);
             return tax;
         }
 
