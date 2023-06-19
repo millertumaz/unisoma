@@ -44,7 +44,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{cpf}")
-    public EmployeeDto alter(@PathVariable("cpf") String cpf, @RequestBody Employee employee) {
+    public EmployeeDto alter(@PathVariable("cpf") String cpf,@Valid @RequestBody Employee employee) {
         employee.setCpf(cpf);
 
         return this.employeeService.update(employee);

@@ -40,8 +40,6 @@ public class EmployeeServiceTest {
 
     private Employee employee;
 
-    private EmployeeDto employeeDto;
-
     private Optional<Employee> employeeOptional;
 
     private static final String CPF = "106.432.520-37";
@@ -175,8 +173,6 @@ public class EmployeeServiceTest {
 
     private void startEmployees() {
         employee = new Employee(CPF, NAME, BIRTHDATE, PHONE, ADDRESS, SALARY);
-
-        employeeDto = new EmployeeDto(CPF, NAME, BIRTHDATE, PHONE, ADDRESS, SALARY);
 
         employeeOptional = Optional.of(new Employee(CPF, NAME, BIRTHDATE, PHONE, ADDRESS, SALARY));
     }
