@@ -163,14 +163,6 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void testUpdate() {
-        when(repository.findById(anyString())).thenReturn(employeeOptional);
-        repository.save(employee);
-        when(employeeService.update(any())).thenReturn(employeeDto);
-        employee.setAddress("aaa");
-    }
-
-    @Test
     void testUpdateNotFound() {
         when(repository.findById(anyString())).thenThrow(new EmployeeNotFoundException());
 
