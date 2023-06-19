@@ -60,7 +60,7 @@ public class IncomeTaxServiceTest {
         assertEquals(IncomeTaxDto.class, response.getClass());
         
         assertEqual(response.getCpf(), CPF);
-        assertEqual(response.getTaxa(), TAX);
+        assertEqual(response.getTax(), TAX);
     }
 
     private void assertEqual(String cpf2, String cpf3) {

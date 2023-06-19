@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class IncomeTaxDto {
     private String cpf;
-    private String taxa;
+    private String tax;
 
-    public IncomeTaxDto(Employee employee, String taxa) {
+    public IncomeTaxDto(Employee employee, String tax) {
         this.cpf = employee.getCpf();
-        this.taxa = taxa;
+        this.tax = tax;
     }
 }
