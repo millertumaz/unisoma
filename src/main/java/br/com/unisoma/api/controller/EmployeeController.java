@@ -21,7 +21,7 @@ import br.com.unisoma.api.model.Employee;
 import br.com.unisoma.api.service.EmployeeService;
 
 @RestController
-@RequestMapping(value = "/api/employee")
+@RequestMapping(value = "/employee")
 public class EmployeeController {
 
     @Autowired
@@ -43,9 +43,8 @@ public class EmployeeController {
         return this.employeeService.create(employee);
     }
 
-    @PutMapping("/{cpf}")
-    public EmployeeDto alter(@PathVariable("cpf") String cpf,@Valid @RequestBody Employee employee) {
-        employee.setCpf(cpf);
+    @PutMapping()
+    public EmployeeDto alter(@Valid @RequestBody Employee employee) {
 
         return this.employeeService.update(employee);
     }

@@ -12,7 +12,7 @@ import br.com.unisoma.api.dto.IncomeTaxDto;
 import br.com.unisoma.api.service.IncomeTaxService;
 
 @RestController
-@RequestMapping("/api/incometax")
+@RequestMapping("/incometax")
 public class IncomeTaxController {
 
     @Autowired
